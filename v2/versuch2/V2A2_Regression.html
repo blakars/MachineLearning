@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module V2A2_Regression</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>V2A2_Regression</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Ckabla%5Conedrive%5Cdesktop%5Cstudium%5Cws2223%5Cils%5Cpraktikum%5Cv2%5Cversuch2%5Cv2a2_regression.py">c:\users\kabla\onedrive\desktop\studium\ws2223\ils\praktikum\v2\versuch2\v2a2_regression.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;V2A2_Regression.py<br>
+#&nbsp;Programmgeruest&nbsp;zu&nbsp;Versuch&nbsp;2,&nbsp;Aufgabe&nbsp;2</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top><a href="scipy.html">scipy</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="V2A2_Regression.html#DataScaler">DataScaler</a>
+</font></dt><dt><font face="helvetica, arial"><a href="V2A2_Regression.html#Regressifier">Regressifier</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="V2A2_Regression.html#KNNRegressifier">KNNRegressifier</a>
+</font></dt><dt><font face="helvetica, arial"><a href="V2A2_Regression.html#LSRRegressifier">LSRRegressifier</a>
+</font></dt></dl>
+</dd>
+</dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DataScaler">class <strong>DataScaler</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#DataScaler">DataScaler</a>(X)<br>
+&nbsp;<br>
+Class&nbsp;for&nbsp;standardizing&nbsp;data&nbsp;vectors&nbsp;<br>
+Some&nbsp;regression&nbsp;methods&nbsp;require&nbsp;standardizing&nbsp;of&nbsp;data&nbsp;before&nbsp;training&nbsp;to&nbsp;avoid&nbsp;numerical&nbsp;instabilities!!<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="DataScaler-__init__"><strong>__init__</strong></a>(self, X)</dt><dd><tt>Constructor:&nbsp;Set&nbsp;parameters&nbsp;(mean,&nbsp;std,...)&nbsp;to&nbsp;standardize&nbsp;data&nbsp;matrix&nbsp;X<br>
+:param&nbsp;X:&nbsp;Data&nbsp;matrix&nbsp;of&nbsp;size&nbsp;NxD&nbsp;the&nbsp;standardization&nbsp;parameters&nbsp;(mean,&nbsp;std,&nbsp;...)&nbsp;should&nbsp;be&nbsp;computed&nbsp;for&nbsp;<br>
+:returns:&nbsp;<a href="builtins.html#object">object</a>&nbsp;of&nbsp;class&nbsp;<a href="#DataScaler">DataScaler</a></tt></dd></dl>
+
+<dl><dt><a name="DataScaler-printState"><strong>printState</strong></a>(self)</dt><dd><tt>print&nbsp;standardization&nbsp;parameters&nbsp;(mean&nbsp;value,&nbsp;standard&nbsp;deviation&nbsp;(std),&nbsp;and&nbsp;inverse&nbsp;of&nbsp;std)</tt></dd></dl>
+
+<dl><dt><a name="DataScaler-scale"><strong>scale</strong></a>(self, x)</dt><dd><tt>scale&nbsp;data&nbsp;vector&nbsp;(or&nbsp;data&nbsp;matrix)&nbsp;x&nbsp;to&nbsp;mean=0&nbsp;and&nbsp;s.d.=1&nbsp;<br>
+:param&nbsp;x:&nbsp;data&nbsp;vector&nbsp;or&nbsp;data&nbsp;matrix&nbsp;&nbsp;<br>
+:returns:&nbsp;scaled&nbsp;(standardized)&nbsp;data&nbsp;vector&nbsp;or&nbsp;data&nbsp;matrix</tt></dd></dl>
+
+<dl><dt><a name="DataScaler-unscale"><strong>unscale</strong></a>(self, x)</dt><dd><tt>unscale&nbsp;data&nbsp;vector&nbsp;(or&nbsp;data&nbsp;matrix)&nbsp;x&nbsp;to&nbsp;original&nbsp;data&nbsp;ranges&nbsp;&nbsp;<br>
+:param&nbsp;x:&nbsp;standardized&nbsp;data&nbsp;vector&nbsp;or&nbsp;data&nbsp;matrix&nbsp;&nbsp;<br>
+:returns:&nbsp;unscaled&nbsp;data&nbsp;vector&nbsp;or&nbsp;data&nbsp;matrix</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="KNNRegressifier">class <strong>KNNRegressifier</strong></a>(<a href="V2A2_Regression.html#Regressifier">Regressifier</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#KNNRegressifier">KNNRegressifier</a>(K,&nbsp;flagKLinReg=0)<br>
+&nbsp;<br>
+Class&nbsp;for&nbsp;fast&nbsp;K-Nearest-Neighbor-Regression&nbsp;using&nbsp;KD-trees<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="V2A2_Regression.html#KNNRegressifier">KNNRegressifier</a></dd>
+<dd><a href="V2A2_Regression.html#Regressifier">Regressifier</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="KNNRegressifier-__init__"><strong>__init__</strong></a>(self, K, flagKLinReg=0)</dt><dd><tt>Constructor&nbsp;of&nbsp;class&nbsp;<a href="#KNNRegressifier">KNNRegressifier</a><br>
+:param&nbsp;K:&nbsp;number&nbsp;of&nbsp;nearest&nbsp;neighbors&nbsp;that&nbsp;are&nbsp;used&nbsp;to&nbsp;compute&nbsp;prediction&nbsp;<br>
+:flagKLinReg:&nbsp;if&nbsp;&gt;0&nbsp;then&nbsp;the&nbsp;do&nbsp;a&nbsp;linear&nbsp;(least&nbsp;squares)&nbsp;regression&nbsp;on&nbsp;the&nbsp;the&nbsp;K&nbsp;nearest&nbsp;neighbors&nbsp;and&nbsp;their&nbsp;target&nbsp;values<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherwise&nbsp;just&nbsp;take&nbsp;the&nbsp;mean&nbsp;of&nbsp;the&nbsp;K&nbsp;nearest&nbsp;neighbors&nbsp;target&nbsp;vectors<br>
+:returns:&nbsp;-</tt></dd></dl>
+
+<dl><dt><a name="KNNRegressifier-fit"><strong>fit</strong></a>(self, X, T)</dt><dd><tt>Train&nbsp;regressifier&nbsp;by&nbsp;stroing&nbsp;X&nbsp;and&nbsp;T&nbsp;and&nbsp;by&nbsp;creating&nbsp;a&nbsp;KD-Tree&nbsp;based&nbsp;on&nbsp;X&nbsp;&nbsp;&nbsp;<br>
+:param&nbsp;X:&nbsp;Data&nbsp;matrix&nbsp;of&nbsp;size&nbsp;NxD,&nbsp;contains&nbsp;in&nbsp;each&nbsp;row&nbsp;a&nbsp;data&nbsp;vector&nbsp;of&nbsp;size&nbsp;D<br>
+:param&nbsp;T:&nbsp;Target&nbsp;vector&nbsp;matrix&nbsp;of&nbsp;size&nbsp;NxK,&nbsp;contains&nbsp;in&nbsp;each&nbsp;row&nbsp;a&nbsp;target&nbsp;vector&nbsp;of&nbsp;size&nbsp;K<br>
+:returns:&nbsp;-</tt></dd></dl>
+
+<dl><dt><a name="KNNRegressifier-predict"><strong>predict</strong></a>(self, x, K=None, flagKLinReg=None)</dt><dd><tt>predicts&nbsp;the&nbsp;target&nbsp;value&nbsp;y(x)&nbsp;for&nbsp;a&nbsp;test&nbsp;vector&nbsp;x<br>
+:param&nbsp;x:&nbsp;test&nbsp;data&nbsp;vector&nbsp;of&nbsp;size&nbsp;D<br>
+:param&nbsp;K:&nbsp;number&nbsp;of&nbsp;nearest&nbsp;neighbors&nbsp;that&nbsp;are&nbsp;used&nbsp;to&nbsp;compute&nbsp;prediction&nbsp;<br>
+:flagKLinReg:&nbsp;if&nbsp;&gt;0&nbsp;then&nbsp;the&nbsp;do&nbsp;a&nbsp;linear&nbsp;(least&nbsp;squares)&nbsp;regression&nbsp;on&nbsp;the&nbsp;the&nbsp;K&nbsp;nearest&nbsp;neighbors&nbsp;and&nbsp;their&nbsp;target&nbsp;values<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherwise&nbsp;just&nbsp;take&nbsp;the&nbsp;mean&nbsp;of&nbsp;the&nbsp;K&nbsp;nearest&nbsp;neighbors&nbsp;target&nbsp;vectors<br>
+:returns:&nbsp;predicted&nbsp;target&nbsp;vector&nbsp;of&nbsp;size&nbsp;K</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="V2A2_Regression.html#Regressifier">Regressifier</a>:<br>
+<dl><dt><a name="KNNRegressifier-crossvalidate"><strong>crossvalidate</strong></a>(self, S, X, T, dist=&lt;function Regressifier.&lt;lambda&gt; at 0x000002E37E8EC820&gt;)</dt><dd><tt>Do&nbsp;a&nbsp;S-fold&nbsp;cross&nbsp;validation<br>
+:param&nbsp;S:&nbsp;Number&nbsp;of&nbsp;parts&nbsp;the&nbsp;data&nbsp;set&nbsp;is&nbsp;divided&nbsp;into<br>
+:param&nbsp;X:&nbsp;Data&nbsp;matrix&nbsp;(one&nbsp;data&nbsp;vector&nbsp;per&nbsp;row)<br>
+:param&nbsp;T:&nbsp;Matrix&nbsp;of&nbsp;target&nbsp;vectors;&nbsp;T[n]&nbsp;is&nbsp;target&nbsp;vector&nbsp;of&nbsp;X[n]<br>
+:param&nbsp;dist:&nbsp;a&nbsp;fuction&nbsp;dist(t)&nbsp;returning&nbsp;the&nbsp;length&nbsp;of&nbsp;vector&nbsp;t&nbsp;(default=Euklidean)<br>
+:returns&nbsp;(E_dist,sd_dist,E_min,E_max)&nbsp;:&nbsp;mean,&nbsp;standard&nbsp;deviation,&nbsp;minimum,&nbsp;and&nbsp;maximum&nbsp;of&nbsp;absolute&nbsp;error&nbsp;<br>
+:returns&nbsp;(Erel_dist,sdrel_dist,Erel_min,Erel_max)&nbsp;:&nbsp;mean,&nbsp;standard&nbsp;deviation,&nbsp;minimum,&nbsp;and&nbsp;maximum&nbsp;of&nbsp;relative&nbsp;error</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="V2A2_Regression.html#Regressifier">Regressifier</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="LSRRegressifier">class <strong>LSRRegressifier</strong></a>(<a href="V2A2_Regression.html#Regressifier">Regressifier</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#LSRRegressifier">LSRRegressifier</a>(lmbda=0,&nbsp;phi=&amp;lt;function&nbsp;<a href="#LSRRegressifier">LSRRegressifier</a>.&amp;lt;lambda&amp;gt;&nbsp;at&nbsp;0x000002E37E8ECC10&amp;gt;,&nbsp;flagSTD=0,&nbsp;eps=1e-06)<br>
+&nbsp;<br>
+Class&nbsp;for&nbsp;Least&nbsp;Squares&nbsp;(or&nbsp;Maximum&nbsp;Likelihood)&nbsp;Linear&nbsp;<a href="#Regressifier">Regressifier</a>&nbsp;with&nbsp;sum&nbsp;of&nbsp;squares&nbsp;regularization<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="V2A2_Regression.html#LSRRegressifier">LSRRegressifier</a></dd>
+<dd><a href="V2A2_Regression.html#Regressifier">Regressifier</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="LSRRegressifier-__init__"><strong>__init__</strong></a>(self, lmbda=0, phi=&lt;function LSRRegressifier.&lt;lambda&gt; at 0x000002E37E8ECC10&gt;, flagSTD=0, eps=1e-06)</dt><dd><tt>Constructor&nbsp;of&nbsp;class&nbsp;LSRegressifier<br>
+:param&nbsp;lmbda:&nbsp;Regularization&nbsp;coefficient&nbsp;lambda<br>
+:param&nbsp;phi:&nbsp;Basis-functions&nbsp;used&nbsp;by&nbsp;the&nbsp;linear&nbsp;model&nbsp;(default&nbsp;linear&nbsp;polynomial)<br>
+:param&nbsp;flagSTD:&nbsp;If&nbsp;&gt;0&nbsp;then&nbsp;standardize&nbsp;data&nbsp;X&nbsp;and&nbsp;target&nbsp;values&nbsp;T&nbsp;(to&nbsp;mean&nbsp;0&nbsp;and&nbsp;s.d.&nbsp;1)<br>
+:param&nbsp;eps:&nbsp;maximal&nbsp;residual&nbsp;value&nbsp;to&nbsp;tolerate&nbsp;(instead&nbsp;of&nbsp;zero)&nbsp;for&nbsp;numerically&nbsp;good&nbsp;conditioned&nbsp;problems<br>
+:returns:&nbsp;-</tt></dd></dl>
+
+<dl><dt><a name="LSRRegressifier-fit"><strong>fit</strong></a>(self, X, T, lmbda=None, phi=None, flagSTD=None)</dt><dd><tt>Train&nbsp;regressifier&nbsp;(see&nbsp;lecture&nbsp;manuscript,&nbsp;theorem&nbsp;3.11,&nbsp;p33)&nbsp;<br>
+:param&nbsp;X:&nbsp;Data&nbsp;matrix&nbsp;of&nbsp;size&nbsp;NxD,&nbsp;contains&nbsp;in&nbsp;each&nbsp;row&nbsp;a&nbsp;data&nbsp;vector&nbsp;of&nbsp;size&nbsp;D<br>
+:param&nbsp;T:&nbsp;Target&nbsp;vector&nbsp;matrix&nbsp;of&nbsp;size&nbsp;NxK,&nbsp;contains&nbsp;in&nbsp;each&nbsp;row&nbsp;a&nbsp;target&nbsp;vector&nbsp;of&nbsp;size&nbsp;K<br>
+:param&nbsp;lmbda:&nbsp;Regularization&nbsp;coefficient&nbsp;lambda<br>
+:param&nbsp;phi:&nbsp;Basis-functions&nbsp;used&nbsp;by&nbsp;the&nbsp;linear&nbsp;model&nbsp;(default&nbsp;linear&nbsp;polynomial)<br>
+:param&nbsp;flagSTD:&nbsp;If&nbsp;&gt;0&nbsp;then&nbsp;standardize&nbsp;data&nbsp;X&nbsp;and&nbsp;target&nbsp;values&nbsp;T&nbsp;(to&nbsp;mean&nbsp;0&nbsp;and&nbsp;s.d.&nbsp;1)<br>
+:returns:&nbsp;flagOK:&nbsp;if&nbsp;&gt;0&nbsp;then&nbsp;all&nbsp;is&nbsp;ok,&nbsp;otherwise&nbsp;matrix&nbsp;inversion&nbsp;was&nbsp;bad&nbsp;conditioned&nbsp;(and&nbsp;results&nbsp;should&nbsp;not&nbsp;be&nbsp;trusted!!!)</tt></dd></dl>
+
+<dl><dt><a name="LSRRegressifier-predict"><strong>predict</strong></a>(self, x, flagSTD=None)</dt><dd><tt>predicts&nbsp;the&nbsp;target&nbsp;value&nbsp;y(x)&nbsp;for&nbsp;a&nbsp;test&nbsp;vector&nbsp;x<br>
+:param&nbsp;x:&nbsp;test&nbsp;data&nbsp;vector&nbsp;of&nbsp;size&nbsp;D<br>
+:param&nbsp;flagSTD:&nbsp;If&nbsp;&gt;0&nbsp;then&nbsp;standardize&nbsp;data&nbsp;X&nbsp;and&nbsp;target&nbsp;values&nbsp;T&nbsp;(to&nbsp;mean&nbsp;0&nbsp;and&nbsp;s.d.&nbsp;1)<br>
+:returns:&nbsp;predicted&nbsp;target&nbsp;vector&nbsp;y&nbsp;of&nbsp;size&nbsp;K</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="V2A2_Regression.html#Regressifier">Regressifier</a>:<br>
+<dl><dt><a name="LSRRegressifier-crossvalidate"><strong>crossvalidate</strong></a>(self, S, X, T, dist=&lt;function Regressifier.&lt;lambda&gt; at 0x000002E37E8EC820&gt;)</dt><dd><tt>Do&nbsp;a&nbsp;S-fold&nbsp;cross&nbsp;validation<br>
+:param&nbsp;S:&nbsp;Number&nbsp;of&nbsp;parts&nbsp;the&nbsp;data&nbsp;set&nbsp;is&nbsp;divided&nbsp;into<br>
+:param&nbsp;X:&nbsp;Data&nbsp;matrix&nbsp;(one&nbsp;data&nbsp;vector&nbsp;per&nbsp;row)<br>
+:param&nbsp;T:&nbsp;Matrix&nbsp;of&nbsp;target&nbsp;vectors;&nbsp;T[n]&nbsp;is&nbsp;target&nbsp;vector&nbsp;of&nbsp;X[n]<br>
+:param&nbsp;dist:&nbsp;a&nbsp;fuction&nbsp;dist(t)&nbsp;returning&nbsp;the&nbsp;length&nbsp;of&nbsp;vector&nbsp;t&nbsp;(default=Euklidean)<br>
+:returns&nbsp;(E_dist,sd_dist,E_min,E_max)&nbsp;:&nbsp;mean,&nbsp;standard&nbsp;deviation,&nbsp;minimum,&nbsp;and&nbsp;maximum&nbsp;of&nbsp;absolute&nbsp;error&nbsp;<br>
+:returns&nbsp;(Erel_dist,sdrel_dist,Erel_min,Erel_max)&nbsp;:&nbsp;mean,&nbsp;standard&nbsp;deviation,&nbsp;minimum,&nbsp;and&nbsp;maximum&nbsp;of&nbsp;relative&nbsp;error</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="V2A2_Regression.html#Regressifier">Regressifier</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Regressifier">class <strong>Regressifier</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Abstract&nbsp;base&nbsp;class&nbsp;for&nbsp;regressifiers<br>
+Inherit&nbsp;from&nbsp;this&nbsp;class&nbsp;to&nbsp;implement&nbsp;a&nbsp;concrete&nbsp;regression&nbsp;algorithm<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Regressifier-crossvalidate"><strong>crossvalidate</strong></a>(self, S, X, T, dist=&lt;function Regressifier.&lt;lambda&gt; at 0x000002E37E8EC820&gt;)</dt><dd><tt>Do&nbsp;a&nbsp;S-fold&nbsp;cross&nbsp;validation<br>
+:param&nbsp;S:&nbsp;Number&nbsp;of&nbsp;parts&nbsp;the&nbsp;data&nbsp;set&nbsp;is&nbsp;divided&nbsp;into<br>
+:param&nbsp;X:&nbsp;Data&nbsp;matrix&nbsp;(one&nbsp;data&nbsp;vector&nbsp;per&nbsp;row)<br>
+:param&nbsp;T:&nbsp;Matrix&nbsp;of&nbsp;target&nbsp;vectors;&nbsp;T[n]&nbsp;is&nbsp;target&nbsp;vector&nbsp;of&nbsp;X[n]<br>
+:param&nbsp;dist:&nbsp;a&nbsp;fuction&nbsp;dist(t)&nbsp;returning&nbsp;the&nbsp;length&nbsp;of&nbsp;vector&nbsp;t&nbsp;(default=Euklidean)<br>
+:returns&nbsp;(E_dist,sd_dist,E_min,E_max)&nbsp;:&nbsp;mean,&nbsp;standard&nbsp;deviation,&nbsp;minimum,&nbsp;and&nbsp;maximum&nbsp;of&nbsp;absolute&nbsp;error&nbsp;<br>
+:returns&nbsp;(Erel_dist,sdrel_dist,Erel_min,Erel_max)&nbsp;:&nbsp;mean,&nbsp;standard&nbsp;deviation,&nbsp;minimum,&nbsp;and&nbsp;maximum&nbsp;of&nbsp;relative&nbsp;error</tt></dd></dl>
+
+<dl><dt><a name="Regressifier-fit"><strong>fit</strong></a>(self, X, T)</dt><dd><tt>Train&nbsp;regressifier&nbsp;by&nbsp;training&nbsp;data&nbsp;X,&nbsp;T,&nbsp;should&nbsp;be&nbsp;overwritten&nbsp;by&nbsp;any&nbsp;derived&nbsp;class<br>
+:param&nbsp;X:&nbsp;Data&nbsp;matrix&nbsp;of&nbsp;size&nbsp;NxD,&nbsp;contains&nbsp;in&nbsp;each&nbsp;row&nbsp;a&nbsp;data&nbsp;vector&nbsp;of&nbsp;size&nbsp;D<br>
+:param&nbsp;T:&nbsp;Target&nbsp;vector&nbsp;matrix&nbsp;of&nbsp;size&nbsp;NxK,&nbsp;contains&nbsp;in&nbsp;each&nbsp;row&nbsp;a&nbsp;target&nbsp;vector&nbsp;of&nbsp;size&nbsp;K<br>
+:returns:&nbsp;-</tt></dd></dl>
+
+<dl><dt><a name="Regressifier-predict"><strong>predict</strong></a>(self, x)</dt><dd><tt>Implementation&nbsp;of&nbsp;the&nbsp;regression&nbsp;algorithm;&nbsp;should&nbsp;be&nbsp;overwritten&nbsp;by&nbsp;any&nbsp;derived&nbsp;class&nbsp;<br>
+:param&nbsp;x:&nbsp;test&nbsp;data&nbsp;vector&nbsp;of&nbsp;size&nbsp;D<br>
+:returns:&nbsp;predicted&nbsp;target&nbsp;vector</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-phi_polynomial"><strong>phi_polynomial</strong></a>(x, deg=1)</dt><dd><tt>polynomial&nbsp;basis&nbsp;function&nbsp;vector;&nbsp;may&nbsp;be&nbsp;used&nbsp;to&nbsp;transform&nbsp;a&nbsp;data&nbsp;vector&nbsp;x&nbsp;into&nbsp;a&nbsp;feature&nbsp;vector&nbsp;phi(x)&nbsp;having&nbsp;polynomial&nbsp;basis&nbsp;function&nbsp;components<br>
+:param&nbsp;x:&nbsp;data&nbsp;vector&nbsp;to&nbsp;be&nbsp;transformed&nbsp;into&nbsp;a&nbsp;feature&nbsp;vector<br>
+:param&nbsp;deg:&nbsp;degree&nbsp;of&nbsp;polynomial<br>
+:returns&nbsp;phi:&nbsp;feature&nbsp;vector&nbsp;<br>
+Example:&nbsp;<a href="#-phi_polynomial">phi_polynomial</a>(x,3)&nbsp;returns&nbsp;for&nbsp;one-dimensional&nbsp;x&nbsp;the&nbsp;vector&nbsp;[1,&nbsp;x,&nbsp;x*x,&nbsp;x*x*x]</tt></dd></dl>
+</td></tr></table>
+</body></html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module V1A2_Classifier</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>V1A2_Classifier</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Ckabla%5Conedrive%5Cdesktop%5Cstudium%5Cws2223%5Cils%5Cpraktikum%5Cv1%5Cversuch1%5Cv1a2_classifier.py">c:\users\kabla\onedrive\desktop\studium\ws2223\ils\praktikum\v1\versuch1\v1a2_classifier.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;Python&nbsp;Module&nbsp;for&nbsp;Classification&nbsp;Algorithms<br>
+#&nbsp;Programmgeruest&nbsp;zu&nbsp;Versuch&nbsp;1,&nbsp;Aufgabe&nbsp;2</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top><a href="scipy.html">scipy</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="V1A2_Classifier.html#Classifier">Classifier</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="V1A2_Classifier.html#KNNClassifier">KNNClassifier</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="V1A2_Classifier.html#FastKNNClassifier">FastKNNClassifier</a>
+</font></dt></dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Classifier">class <strong>Classifier</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Classifier">Classifier</a>(C=2)<br>
+&nbsp;<br>
+Abstract&nbsp;base&nbsp;class&nbsp;for&nbsp;a&nbsp;classifier.<br>
+Inherit&nbsp;from&nbsp;this&nbsp;class&nbsp;to&nbsp;implement&nbsp;a&nbsp;concrete&nbsp;classification&nbsp;algorithm<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Classifier-__init__"><strong>__init__</strong></a>(self, C=2)</dt><dd><tt>Constructor&nbsp;of&nbsp;class&nbsp;<a href="#Classifier">Classifier</a><br>
+Should&nbsp;be&nbsp;called&nbsp;by&nbsp;the&nbsp;constructors&nbsp;of&nbsp;derived&nbsp;classes<br>
+:param&nbsp;C:&nbsp;Number&nbsp;of&nbsp;different&nbsp;classes</tt></dd></dl>
+
+<dl><dt><a name="Classifier-crossvalidate"><strong>crossvalidate</strong></a>(self, S, X, T)</dt><dd><tt>Do&nbsp;a&nbsp;S-fold&nbsp;cross&nbsp;validation<br>
+:param&nbsp;S:&nbsp;Number&nbsp;of&nbsp;parts&nbsp;the&nbsp;data&nbsp;set&nbsp;is&nbsp;divided&nbsp;into<br>
+:param&nbsp;X:&nbsp;Data&nbsp;matrix&nbsp;(one&nbsp;data&nbsp;vector&nbsp;per&nbsp;row)<br>
+:param&nbsp;T:&nbsp;Vector&nbsp;of&nbsp;class&nbsp;labels;&nbsp;T[n]&nbsp;is&nbsp;label&nbsp;of&nbsp;X[n]<br>
+:returns&nbsp;pClassError:&nbsp;probability&nbsp;of&nbsp;a&nbsp;classification&nbsp;error&nbsp;(=1-Accuracy)<br>
+:returns&nbsp;pConfErrors:&nbsp;confusion&nbsp;matrix,&nbsp;pConfErrors[i,j]&nbsp;is&nbsp;the&nbsp;probability&nbsp;that&nbsp;a&nbsp;vector&nbsp;from&nbsp;true&nbsp;class&nbsp;j&nbsp;will&nbsp;be&nbsp;mis-classified&nbsp;as&nbsp;class&nbsp;i</tt></dd></dl>
+
+<dl><dt><a name="Classifier-fit"><strong>fit</strong></a>(self, X, T)</dt><dd><tt>Train&nbsp;classier&nbsp;by&nbsp;training&nbsp;data&nbsp;X,&nbsp;T,&nbsp;should&nbsp;be&nbsp;overwritten&nbsp;by&nbsp;any&nbsp;derived&nbsp;class<br>
+:param&nbsp;X:&nbsp;Data&nbsp;matrix,&nbsp;contains&nbsp;in&nbsp;each&nbsp;row&nbsp;a&nbsp;data&nbsp;vector<br>
+:param&nbsp;T:&nbsp;Vector&nbsp;of&nbsp;class&nbsp;labels,&nbsp;must&nbsp;have&nbsp;same&nbsp;length&nbsp;as&nbsp;X,&nbsp;each&nbsp;label&nbsp;should&nbsp;be&nbsp;integer&nbsp;in&nbsp;0,1,...,C-1<br>
+:returns:&nbsp;-</tt></dd></dl>
+
+<dl><dt><a name="Classifier-predict"><strong>predict</strong></a>(self, x)</dt><dd><tt>Implementation&nbsp;of&nbsp;classification&nbsp;algorithm,&nbsp;should&nbsp;be&nbsp;overwritten&nbsp;in&nbsp;any&nbsp;derived&nbsp;class<br>
+:param&nbsp;x:&nbsp;test&nbsp;data&nbsp;vector<br>
+:returns:&nbsp;label&nbsp;of&nbsp;most&nbsp;likely&nbsp;class&nbsp;that&nbsp;test&nbsp;vector&nbsp;x&nbsp;belongs&nbsp;to&nbsp;(and&nbsp;possibly&nbsp;additional&nbsp;information)</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="FastKNNClassifier">class <strong>FastKNNClassifier</strong></a>(<a href="V1A2_Classifier.html#KNNClassifier">KNNClassifier</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#FastKNNClassifier">FastKNNClassifier</a>(C=2,&nbsp;k=1)<br>
+&nbsp;<br>
+Fast&nbsp;k-nearest-neighbor&nbsp;classifier&nbsp;based&nbsp;on&nbsp;kd-trees&nbsp;<br>
+Inherits&nbsp;from&nbsp;class&nbsp;<a href="#KNNClassifier">KNNClassifier</a><br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="V1A2_Classifier.html#FastKNNClassifier">FastKNNClassifier</a></dd>
+<dd><a href="V1A2_Classifier.html#KNNClassifier">KNNClassifier</a></dd>
+<dd><a href="V1A2_Classifier.html#Classifier">Classifier</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="FastKNNClassifier-__init__"><strong>__init__</strong></a>(self, C=2, k=1)</dt><dd><tt>Constructor&nbsp;of&nbsp;the&nbsp;KNN-<a href="#Classifier">Classifier</a><br>
+:param&nbsp;C:&nbsp;Number&nbsp;of&nbsp;different&nbsp;classes<br>
+:param&nbsp;k:&nbsp;Number&nbsp;of&nbsp;nearest&nbsp;neighbors&nbsp;that&nbsp;classification&nbsp;is&nbsp;based&nbsp;on</tt></dd></dl>
+
+<dl><dt><a name="FastKNNClassifier-fit"><strong>fit</strong></a>(self, X, T)</dt><dd><tt>Train&nbsp;classifier&nbsp;by&nbsp;creating&nbsp;a&nbsp;kd-tree&nbsp;<br>
+:param&nbsp;X:&nbsp;Data&nbsp;matrix,&nbsp;contains&nbsp;in&nbsp;each&nbsp;row&nbsp;a&nbsp;data&nbsp;vector<br>
+:param&nbsp;T:&nbsp;Vector&nbsp;of&nbsp;class&nbsp;labels,&nbsp;must&nbsp;have&nbsp;same&nbsp;length&nbsp;as&nbsp;X,&nbsp;each&nbsp;label&nbsp;should&nbsp;be&nbsp;integer&nbsp;in&nbsp;0,1,...,C-1<br>
+:returns:&nbsp;-</tt></dd></dl>
+
+<dl><dt><a name="FastKNNClassifier-getKNearestNeighbors"><strong>getKNearestNeighbors</strong></a>(self, x, k=None)</dt><dd><tt>fast&nbsp;computation&nbsp;of&nbsp;the&nbsp;k&nbsp;nearest&nbsp;neighbors&nbsp;for&nbsp;a&nbsp;query&nbsp;vector&nbsp;x&nbsp;given&nbsp;a&nbsp;data&nbsp;matrix&nbsp;X&nbsp;by&nbsp;using&nbsp;the&nbsp;KD-tree<br>
+:param&nbsp;x:&nbsp;the&nbsp;query&nbsp;vector&nbsp;x<br>
+:param&nbsp;k:&nbsp;number&nbsp;of&nbsp;nearest-neighbors&nbsp;to&nbsp;be&nbsp;returned<br>
+:return&nbsp;idxNN:&nbsp;return&nbsp;list&nbsp;of&nbsp;k&nbsp;line&nbsp;indexes&nbsp;referring&nbsp;to&nbsp;the&nbsp;k&nbsp;nearest&nbsp;neighbors&nbsp;of&nbsp;x&nbsp;in&nbsp;X</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="V1A2_Classifier.html#KNNClassifier">KNNClassifier</a>:<br>
+<dl><dt><a name="FastKNNClassifier-predict"><strong>predict</strong></a>(self, x, k=None)</dt><dd><tt>Implementation&nbsp;of&nbsp;classification&nbsp;algorithm,&nbsp;should&nbsp;be&nbsp;overwritten&nbsp;in&nbsp;any&nbsp;derived&nbsp;classes<br>
+:param&nbsp;x:&nbsp;test&nbsp;data&nbsp;vector<br>
+:param&nbsp;k:&nbsp;search&nbsp;k&nbsp;nearest&nbsp;neighbors&nbsp;(default&nbsp;self.<strong>k</strong>)<br>
+:returns&nbsp;prediction:&nbsp;label&nbsp;of&nbsp;most&nbsp;likely&nbsp;class&nbsp;that&nbsp;test&nbsp;vector&nbsp;x&nbsp;belongs&nbsp;to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;there&nbsp;are&nbsp;two&nbsp;or&nbsp;more&nbsp;classes&nbsp;with&nbsp;maximum&nbsp;probability&nbsp;then&nbsp;one&nbsp;class&nbsp;is&nbsp;chosen&nbsp;randomly<br>
+:returns&nbsp;pClassPosteriori:&nbsp;A-Posteriori&nbsp;probabilities,&nbsp;pClassPosteriori[i]&nbsp;is&nbsp;probability&nbsp;that&nbsp;x&nbsp;belongs&nbsp;to&nbsp;class&nbsp;i<br>
+:returns&nbsp;idxKNN:&nbsp;indexes&nbsp;of&nbsp;the&nbsp;k&nbsp;nearest&nbsp;neighbors&nbsp;(ordered&nbsp;w.r.t.&nbsp;ascending&nbsp;distance)</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="V1A2_Classifier.html#Classifier">Classifier</a>:<br>
+<dl><dt><a name="FastKNNClassifier-crossvalidate"><strong>crossvalidate</strong></a>(self, S, X, T)</dt><dd><tt>Do&nbsp;a&nbsp;S-fold&nbsp;cross&nbsp;validation<br>
+:param&nbsp;S:&nbsp;Number&nbsp;of&nbsp;parts&nbsp;the&nbsp;data&nbsp;set&nbsp;is&nbsp;divided&nbsp;into<br>
+:param&nbsp;X:&nbsp;Data&nbsp;matrix&nbsp;(one&nbsp;data&nbsp;vector&nbsp;per&nbsp;row)<br>
+:param&nbsp;T:&nbsp;Vector&nbsp;of&nbsp;class&nbsp;labels;&nbsp;T[n]&nbsp;is&nbsp;label&nbsp;of&nbsp;X[n]<br>
+:returns&nbsp;pClassError:&nbsp;probability&nbsp;of&nbsp;a&nbsp;classification&nbsp;error&nbsp;(=1-Accuracy)<br>
+:returns&nbsp;pConfErrors:&nbsp;confusion&nbsp;matrix,&nbsp;pConfErrors[i,j]&nbsp;is&nbsp;the&nbsp;probability&nbsp;that&nbsp;a&nbsp;vector&nbsp;from&nbsp;true&nbsp;class&nbsp;j&nbsp;will&nbsp;be&nbsp;mis-classified&nbsp;as&nbsp;class&nbsp;i</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="V1A2_Classifier.html#Classifier">Classifier</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="KNNClassifier">class <strong>KNNClassifier</strong></a>(<a href="V1A2_Classifier.html#Classifier">Classifier</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#KNNClassifier">KNNClassifier</a>(C=2,&nbsp;k=1)<br>
+&nbsp;<br>
+(Naive)&nbsp;k-nearest-neighbor&nbsp;classifier&nbsp;based&nbsp;on&nbsp;simple&nbsp;look-up-table&nbsp;and&nbsp;exhaustive&nbsp;search<br>
+Derived&nbsp;from&nbsp;base&nbsp;class&nbsp;<a href="#Classifier">Classifier</a><br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="V1A2_Classifier.html#KNNClassifier">KNNClassifier</a></dd>
+<dd><a href="V1A2_Classifier.html#Classifier">Classifier</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="KNNClassifier-__init__"><strong>__init__</strong></a>(self, C=2, k=1)</dt><dd><tt>Constructor&nbsp;of&nbsp;the&nbsp;KNN-<a href="#Classifier">Classifier</a><br>
+:param&nbsp;C:&nbsp;Number&nbsp;of&nbsp;different&nbsp;classes<br>
+:param&nbsp;k:&nbsp;Number&nbsp;of&nbsp;nearest&nbsp;neighbors&nbsp;that&nbsp;classification&nbsp;is&nbsp;based&nbsp;on</tt></dd></dl>
+
+<dl><dt><a name="KNNClassifier-fit"><strong>fit</strong></a>(self, X, T)</dt><dd><tt>Train&nbsp;classifier;&nbsp;for&nbsp;naive&nbsp;KNN&nbsp;<a href="#Classifier">Classifier</a>&nbsp;this&nbsp;just&nbsp;means&nbsp;to&nbsp;store&nbsp;data&nbsp;matrix&nbsp;X&nbsp;and&nbsp;label&nbsp;vector&nbsp;T<br>
+:param&nbsp;X:&nbsp;Data&nbsp;matrix,&nbsp;contains&nbsp;in&nbsp;each&nbsp;row&nbsp;a&nbsp;data&nbsp;vector<br>
+:param&nbsp;T:&nbsp;Vector&nbsp;of&nbsp;class&nbsp;labels,&nbsp;must&nbsp;have&nbsp;same&nbsp;length&nbsp;as&nbsp;X,&nbsp;each&nbsp;label&nbsp;should&nbsp;be&nbsp;integer&nbsp;in&nbsp;0,1,...,C-1<br>
+:returns:&nbsp;-</tt></dd></dl>
+
+<dl><dt><a name="KNNClassifier-getKNearestNeighbors"><strong>getKNearestNeighbors</strong></a>(self, x, k=None, X=None)</dt><dd><tt>compute&nbsp;the&nbsp;k&nbsp;nearest&nbsp;neighbors&nbsp;for&nbsp;a&nbsp;query&nbsp;vector&nbsp;x&nbsp;given&nbsp;a&nbsp;data&nbsp;matrix&nbsp;X<br>
+:param&nbsp;x:&nbsp;the&nbsp;query&nbsp;vector&nbsp;x<br>
+:param&nbsp;X:&nbsp;the&nbsp;N&nbsp;x&nbsp;D&nbsp;data&nbsp;matrix&nbsp;(in&nbsp;each&nbsp;row&nbsp;there&nbsp;is&nbsp;data&nbsp;vector)&nbsp;as&nbsp;a&nbsp;numpy&nbsp;array<br>
+:param&nbsp;k:&nbsp;number&nbsp;of&nbsp;nearest-neighbors&nbsp;to&nbsp;be&nbsp;returned<br>
+:return:&nbsp;list&nbsp;of&nbsp;k&nbsp;line&nbsp;indexes&nbsp;referring&nbsp;to&nbsp;the&nbsp;k&nbsp;nearest&nbsp;neighbors&nbsp;of&nbsp;x&nbsp;in&nbsp;X</tt></dd></dl>
+
+<dl><dt><a name="KNNClassifier-predict"><strong>predict</strong></a>(self, x, k=None)</dt><dd><tt>Implementation&nbsp;of&nbsp;classification&nbsp;algorithm,&nbsp;should&nbsp;be&nbsp;overwritten&nbsp;in&nbsp;any&nbsp;derived&nbsp;classes<br>
+:param&nbsp;x:&nbsp;test&nbsp;data&nbsp;vector<br>
+:param&nbsp;k:&nbsp;search&nbsp;k&nbsp;nearest&nbsp;neighbors&nbsp;(default&nbsp;self.<strong>k</strong>)<br>
+:returns&nbsp;prediction:&nbsp;label&nbsp;of&nbsp;most&nbsp;likely&nbsp;class&nbsp;that&nbsp;test&nbsp;vector&nbsp;x&nbsp;belongs&nbsp;to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;there&nbsp;are&nbsp;two&nbsp;or&nbsp;more&nbsp;classes&nbsp;with&nbsp;maximum&nbsp;probability&nbsp;then&nbsp;one&nbsp;class&nbsp;is&nbsp;chosen&nbsp;randomly<br>
+:returns&nbsp;pClassPosteriori:&nbsp;A-Posteriori&nbsp;probabilities,&nbsp;pClassPosteriori[i]&nbsp;is&nbsp;probability&nbsp;that&nbsp;x&nbsp;belongs&nbsp;to&nbsp;class&nbsp;i<br>
+:returns&nbsp;idxKNN:&nbsp;indexes&nbsp;of&nbsp;the&nbsp;k&nbsp;nearest&nbsp;neighbors&nbsp;(ordered&nbsp;w.r.t.&nbsp;ascending&nbsp;distance)</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="V1A2_Classifier.html#Classifier">Classifier</a>:<br>
+<dl><dt><a name="KNNClassifier-crossvalidate"><strong>crossvalidate</strong></a>(self, S, X, T)</dt><dd><tt>Do&nbsp;a&nbsp;S-fold&nbsp;cross&nbsp;validation<br>
+:param&nbsp;S:&nbsp;Number&nbsp;of&nbsp;parts&nbsp;the&nbsp;data&nbsp;set&nbsp;is&nbsp;divided&nbsp;into<br>
+:param&nbsp;X:&nbsp;Data&nbsp;matrix&nbsp;(one&nbsp;data&nbsp;vector&nbsp;per&nbsp;row)<br>
+:param&nbsp;T:&nbsp;Vector&nbsp;of&nbsp;class&nbsp;labels;&nbsp;T[n]&nbsp;is&nbsp;label&nbsp;of&nbsp;X[n]<br>
+:returns&nbsp;pClassError:&nbsp;probability&nbsp;of&nbsp;a&nbsp;classification&nbsp;error&nbsp;(=1-Accuracy)<br>
+:returns&nbsp;pConfErrors:&nbsp;confusion&nbsp;matrix,&nbsp;pConfErrors[i,j]&nbsp;is&nbsp;the&nbsp;probability&nbsp;that&nbsp;a&nbsp;vector&nbsp;from&nbsp;true&nbsp;class&nbsp;j&nbsp;will&nbsp;be&nbsp;mis-classified&nbsp;as&nbsp;class&nbsp;i</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="V1A2_Classifier.html#Classifier">Classifier</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>
